@@ -1,6 +1,10 @@
-# ftp
+# FTP Implementation Frontend
 
-A new Flutter project.
+This repository contains the code for the frontend of the FTP implementation.
+
+The backend of this project has been developed using Socket and Ftplib library. The repository for the same can be found at https://github.com/sxjal/File-Transfer-Protocol-FTP-Implementation-backend
+
+Happy Coding:)
 
 ## Getting Started
 
