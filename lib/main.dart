@@ -1,59 +1,46 @@
 import 'package:flutter/material.dart';
-import 'package:socket_io_client/socket_io_client.dart' as io;
+// import 'package:http/http.dart' as http;
+import 'dart:io';
+import 'package:ftpconnect/ftpConnect.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: SocketIOExample(),
+    return const MaterialApp(
+      home: MyHomePage(),
     );
   }
 }
 
-class SocketIOExample extends StatefulWidget {
-  const SocketIOExample({super.key});
+class MyHomePage extends StatefulWidget {
+  const MyHomePage({super.key});
   @override
-  // ignore: library_private_types_in_public_api
-  _SocketIOExampleState createState() => _SocketIOExampleState();
+  MyHomePageState createState() => MyHomePageState();
 }
 
-class _SocketIOExampleState extends State<SocketIOExample> {
-  final String serverUrl = '127.0.0.1:1456';
-  late io.Socket socket;
-  TextEditingController messageController = TextEditingController();
-  List<String> messages = [];
+class MyHomePageState extends State<MyHomePage> {
+  void connect() async {
+    final FTPConnect _ftpConnect = FTPConnect(
+      "http://127.0.0.1/12356",
+      user: "sxjal",
+      pass: "12345",
+      showLog: true,
+    );
 
-  @override
-  void initState() {
-    super.initState();
-
-    // Initialize and connect to the socket server.
-    socket = io.io(serverUrl, <String, dynamic>{
-      'transports': ['websocket'],
-      'autoConnect': false,
-    });
-
-    socket.connect();
+    
   }
 
-  // Function to send a message to the server.
-
-  @override
-  void dispose() {
-    socket.disconnect();
-    socket.dispose();
-    super.dispose();
-  }
 
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
       body: Center(
-        child: Text("data"),
+        child: Text("Center"),
       ),
     );
   }
